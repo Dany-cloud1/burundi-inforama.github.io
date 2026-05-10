@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BURUNDI INFORAMA — L'Actualité en Temps Réel</title>
+  <meta name="description" content="Agrégateur d'actualités burundaises 24/7. Politique, économie, sport, culture — en français et en kirundi.">
+  <meta property="og:title" content="BURUNDI INFORAMA">
+  <meta property="og:description" content="L'actualité burundaise en temps réel — 24h/24, 7j/7">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #007A3D;
+      --red: #CE1126;
+      --gold: #F5C400;
+      --dark: #0a0c0b;
+      --dark2: #111510;
+      --dark3: #181c17;
+      --border: rgba(245,196,0,0.15);
+      --text: #e8ede8;
+      --muted: #7a8a7a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Source Serif 4', Georgia, serif;
+      font-weight: 300;
+      overflow-x: hidden;
+    }
+
+    /* ── GRAIN OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 1000;
+      opacity: 0.4;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 40px;
+      background: rgba(10,12,11,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-flag {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .nav-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--green);
+      color: white !important;
+      padding: 8px 18px;
+      border-radius: 2px;
+      font-weight: 600 !important;
+    }
+
+    .nav-cta:hover { background: #009a4e !important; color: white !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 40%, rgba(0,122,61,0.12) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 20% 80%, rgba(206,17,38,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 40% at 80% 20%, rgba(245,196,0,0.05) 0%, transparent 60%);
+    }
+
+    /* Burundi flag SVG emblem background */
+    .hero-emblem {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      opacity: 0.03;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    .live-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(206,17,38,0.15);
+      border: 1px solid rgba(206,17,38,0.3);
+      color: #ff6b7a;
+      padding: 6px 16px;
+      border-radius: 20px;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 32px;
+      animation: fadein 0.8s ease both;
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: #ff4455;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 10vw, 7rem);
+      font-weight: 900;
+      line-height: 0.9;
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      animation: fadein 0.8s 0.1s ease both;
+    }
+
+    .hero-title span {
+      display: block;
+      background: linear-gradient(135deg, var(--gold) 0%, #fff8d6 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-subtitle-line {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.05em;
+      margin-bottom: 28px;
+      animation: fadein 0.8s 0.2s ease both;
+    }
+
+    .hero-desc {
+      max-width: 540px;
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--muted);
+      margin-bottom: 48px;
+      animation: fadein 0.8s 0.3s ease both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+< truncated lines 216-719 >
+      <span class="stat-num">🇧🇮</span>
+      <span class="stat-label">100% Burundi</span>
+    </div>
+  </div>
+
+  <!-- FORMATS -->
+  <section id="formats">
+    <span class="section-tag">Ce que nous couvrons</span>
+    <h2 class="section-title reveal">Un contenu varié,<br>toujours pertinent</h2>
+    <p class="section-desc reveal">Chaque heure, notre système publie automatiquement du contenu frais issu des meilleures sources burundaises.</p>
+    <div class="divider reveal"></div>
+    <div class="formats-grid">
+      <div class="format-card reveal">
+        <span class="format-emoji">📰</span>
+        <div class="format-name">Actualité</div>
+        <div class="format-desc">Les dernières nouvelles politiques et sociales du Burundi, en temps réel.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">⚽</span>
+        <div class="format-name">Sport</div>
+        <div class="format-desc">Vital'O FC, Hawks FC, équipe nationale Intamba mu rugamba, et athlétisme.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">💰</span>
+        <div class="format-name">Économie</div>
+        <div class="format-desc">Café burundais, taux de change BRB, commerce EAC, investissements.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">🎭</span>
+        <div class="format-name">Culture & Société</div>
+        <div class="format-desc">Musique, danse des tambours, art, traditions et personnalités culturelles.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">📖</span>
+        <div class="format-name">Le Saviez-Vous?</div>
+        <div class="format-desc">Faits historiques fascinants et méconnus sur le Burundi et son histoire.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">🌿</span>
+        <div class="format-name">Proverbe Kirundi</div>
+        <div class="format-desc">Sagesse traditionnelle burundaise — proverbes en kirundi avec traduction.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">🌍</span>
+        <div class="format-name">Diaspora</div>
+        <div class="format-desc">Nouvelles pour la communauté burundaise en Belgique, France, Canada et USA.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="padding-top: 0;">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="flag-circle">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="280" height="280">
+            <circle cx="100" cy="100" r="100" fill="#fff"/>
+            <path d="M100,0 L200,0 L200,88 L112,100 L200,112 L200,200 L100,200 L100,112 L88,100 L100,88 Z" fill="#CE1126"/>
+            <path d="M0,0 L100,0 L100,88 L88,100 L100,112 L100,200 L0,200 L0,112 L88,100 L0,88 Z" fill="#1EB53A"/>
+            <line x1="0" y1="100" x2="200" y2="100" stroke="white" stroke-width="22"/>
+            <line x1="100" y1="0" x2="100" y2="200" stroke="white" stroke-width="22"/>
+            <circle cx="100" cy="100" r="28" fill="white"/>
+            <text x="100" y="93" text-anchor="middle" font-size="16" fill="#CE1126">★</text>
+            <text x="88" y="113" text-anchor="middle" font-size="16" fill="#CE1126">★</text>
+            <text x="112" y="113" text-anchor="middle" font-size="16" fill="#CE1126">★</text>
+          </svg>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-tag">À propos</span>
+        <h2 class="section-title reveal">La voix numérique<br>du Burundi</h2>
+        <div class="divider"></div>
+        <p class="reveal">
+          BURUNDI INFORAMA est une plateforme d'agrégation d'actualités burundaises entièrement automatisée, diffusant du contenu <span class="highlight">24 heures sur 24, 7 jours sur 7</span> via Telegram.
+        </p>
+        <p class="reveal">
+          Notre système collecte les informations des meilleures sources burundaises — médias indépendants, radio, réseaux sociaux — et les distribue en temps réel à notre communauté au Burundi et dans la diaspora mondiale.
+        </p>
+        <p class="reveal">
+          En français et en kirundi, nous servons une audience engagée et informée, idéale pour les organisations internationales, les ONG et les marques souhaitant atteindre la communauté burundaise.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVERTISE -->
+  <div class="advertise-section" id="advertise">
+    <div class="advertise-inner">
+      <span class="section-tag">Partenariats & Publicité</span>
+      <h2 class="section-title reveal">Touchez la communauté<br>burundaise mondiale</h2>
+      <p class="section-desc reveal">Notre audience combine Burundais locaux, diaspora en Europe et en Amérique du Nord, organisations humanitaires et acteurs du développement.</p>
+      <div class="divider reveal"></div>
+
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <div class="audience-icon">🏛️</div>
+          <div class="audience-title">ONG & Organisations</div>
+          <div class="audience-desc">UNICEF, UNDP, IRC, Search for Common Ground et autres acteurs humanitaires actifs au Burundi.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">🌍</div>
+          <div class="audience-title">Diaspora</div>
+          <div class="audience-desc">Communauté burundaise en Belgique, France, Canada et USA — avec fort pouvoir d'achat.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">📱</div>
+          <div class="audience-title">Transferts d'argent</div>
+          <div class="audience-desc">Services comme WorldRemit, Western Union ciblant les envois vers le Burundi.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">📻</div>
+          <div class="audience-title">Médias & Marques</div>
+          <div class="audience-desc">Radios locales, marques régionales et entreprises souhaitant visibilité au Burundi.</div>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:24px;" class="reveal">Formules de partenariat</h3>
+      <div class="packages-grid">
+        <div class="package-card reveal">
+          <div class="package-tag">Formule</div>
+          <div class="package-name">Mention Sponsorisée</div>
+          <ul class="package-features">
+            <li>Post Telegram mentionnant votre organisation</li>
+            <li>Logo + lien dans la description du canal</li>
+            <li>1 post sponsorisé par semaine</li>
+          </ul>
+        </div>
+        <div class="package-card featured reveal">
+          <div class="package-tag">★ Recommandé</div>
+          <div class="package-name">Partenaire Officiel</div>
+          <ul class="package-features">
+            <li>Badge "Partenaire Officiel" sur le canal</li>
+            <li>Posts sponsorisés illimités</li>
+            <li>Mention dans tous les formats de contenu</li>
+            <li>Rapport mensuel d'audience</li>
+          </ul>
+        </div>
+        <div class="package-card reveal">
+          <div class="package-tag">Formule</div>
+          <div class="package-name">Contenu Sur Mesure</div>
+          <ul class="package-features">
+            <li>Série de posts thématiques dédiés</li>
+            <li>Campagne de sensibilisation ciblée</li>
+            <li>Idéal pour ONG et campagnes sociales</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <span class="section-tag">Nous contacter</span>
+    <h2 class="section-title reveal">Démarrons une conversation</h2>
+    <p class="section-desc reveal" style="margin: 0 auto 40px;">Pour tout partenariat, publicité ou demande d'information, contactez-nous directement.</p>
+    <div class="contact-box reveal">
+      <div class="contact-links">
+        <a href="https://t.me/BurundiInforama" target="_blank" class="contact-link">
+          <span class="contact-link-icon tg-color">✈</span>
+          <div class="contact-link-text">
+            <div class="contact-link-label">Canal Telegram</div>
+            <div class="contact-link-value">@BurundiInforama</div>
+          </div>
+        </a>
+        <a href="mailto:burundi-inforama@proton.me" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          <div class="contact-link-text">
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">burundi-inforama@proton.me</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">BURUNDI INFORAMA</div>
+    <div class="footer-tagline">L'Actualité en Temps Réel</div>
+    <ul class="footer-links">
+      <li><a href="#formats">Contenus</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#advertise">Partenariats</a></li>
+      <li><a href="https://t.me/BurundiInforama" target="_blank">Telegram</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 BURUNDI INFORAMA — Tous droits réservés</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Smooth nav highlight
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+      });
+    });
+  </script>
+</body>
+</html>
