@@ -574,3 +574,535 @@
       padding: 40px 24px;
       text-align: center;
     }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: #3a4a3a;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      margin: 20px 0 36px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .stats-bar { gap: 32px; padding: 28px 20px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .contact-box { padding: 32px 24px; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Telegram blue */
+    .tg-color { color: #2aabee; }
+
+    /* ── NEWS FEED ── */
+    #news { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2px;
+      margin-top: 32px;
+    }
+
+    .news-card {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      padding: 24px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .news-card:hover {
+      background: #1a1f19;
+      border-color: rgba(245,196,0,0.3);
+    }
+
+    .news-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .news-card-badge {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(245,196,0,0.08);
+      border: 1px solid rgba(245,196,0,0.2);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .news-card-date {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .news-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .news-card-resume {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .news-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .news-card-source {
+      font-size: 0.68rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .news-card-link {
+      font-size: 0.72rem;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .news-card-link:hover { color: var(--gold); }
+
+    .news-loading {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 40px;
+      grid-column: 1/-1;
+    }
+
+    .news-empty {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 40px;
+      grid-column: 1/-1;
+      border: 1px dashed var(--border);
+    }
+
+    .news-refresh {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 16px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <!-- Burundi flag circle -->
+      <svg class="nav-flag" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="50" fill="#fff"/>
+        <!-- White diagonal cross -->
+        <line x1="0" y1="50" x2="100" y2="50" stroke="white" stroke-width="12"/>
+        <line x1="50" y1="0" x2="50" y2="100" stroke="white" stroke-width="12"/>
+        <!-- Red top & bottom -->
+        <path d="M50,0 L100,0 L100,44 L56,50 L100,56 L100,100 L50,100 L50,56 L44,50 L50,44 Z" fill="#CE1126"/>
+        <!-- Green left & right -->
+        <path d="M0,0 L50,0 L50,44 L44,50 L50,56 L50,100 L0,100 L0,56 L44,50 L0,44 Z" fill="#1EB53A"/>
+        <!-- White circle center -->
+        <circle cx="50" cy="50" r="14" fill="white"/>
+        <!-- 3 red stars -->
+        <text x="50" y="47" text-anchor="middle" font-size="8" fill="#CE1126">★</text>
+        <text x="44" y="56" text-anchor="middle" font-size="8" fill="#CE1126">★</text>
+        <text x="56" y="56" text-anchor="middle" font-size="8" fill="#CE1126">★</text>
+      </svg>
+      <span class="nav-name">BURUNDI INFORAMA</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#news">Actualités</a></li>
+      <li><a href="#formats">Contenus</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#advertise">Partenariat</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      Diffusion 24h/24 — 7j/7
+    </div>
+    <h1 class="hero-title">
+      <span>BURUNDI</span>
+      <span style="-webkit-text-fill-color: var(--text); background: none;">INFORAMA</span>
+    </h1>
+    <p class="hero-subtitle-line">L'Actualité en Temps Réel</p>
+    <p class="hero-desc">
+      Le premier agrégateur d'actualités burundaises automatisé — politique, économie et culture — en français.
+    </p>
+    <div class="hero-actions">
+      <a href="https://t.me/BurundiInforama" target="_blank" class="btn-primary">
+        <span class="tg-color">✈</span> Rejoindre sur Telegram
+      </a>
+      <a href="#advertise" class="btn-secondary">Devenir partenaire</a>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat reveal">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Publication automatique</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-num">4</span>
+      <span class="stat-label">Formats de contenu</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Langues — FR & Kirundi</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-num">🇧🇮</span>
+      <span class="stat-label">100% Burundi</span>
+    </div>
+  </div>
+
+
+
+  <!-- NEWS FEED -->
+  <section id="news">
+    <span class="section-tag">Dernières publications</span>
+    <h2 class="section-title reveal">Actualités en direct</h2>
+    <p class="section-desc reveal">Les derniers articles publiés automatiquement sur notre canal Telegram.</p>
+    <div class="divider reveal"></div>
+    <div id="newsGrid">
+      <div style="text-align:center;color:#7a8a7a;padding:40px">⏳ Chargement des actualités...</div>
+    </div>
+    <p id="newsRefreshTime" style="font-size:0.7rem;color:#6c7370;margin-top:16px;text-align:right"></p>
+  </section>
+
+  <!-- FORMATS -->
+  <section id="formats">
+    <span class="section-tag">Ce que nous couvrons</span>
+    <h2 class="section-title reveal">Un contenu varié,<br>toujours pertinent</h2>
+    <p class="section-desc reveal">Chaque heure, notre système publie automatiquement du contenu frais issu des meilleures sources burundaises.</p>
+    <div class="divider reveal"></div>
+            <div class="formats-grid">
+      <div class="format-card reveal">
+        <span class="format-emoji">📰</span>
+        <div class="format-name">Actualité</div>
+        <div class="format-desc">Les dernières nouvelles politiques et sociales du Burundi, en temps réel.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">💰</span>
+        <div class="format-name">Économie</div>
+        <div class="format-desc">Café burundais, taux de change BRB, commerce EAC, investissements.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">🏛️</span>
+        <div class="format-name">Politique</div>
+        <div class="format-desc">Gouvernement, opposition, élections, diplomatie et droits de l'homme au Burundi.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">🎭</span>
+        <div class="format-name">Culture & Société</div>
+        <div class="format-desc">Musique, danse des tambours, art, traditions et personnalités culturelles.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" style="padding-top: 0;">
+    <div class="about-grid">
+      <div class="about-visual reveal">
+        <div class="flag-circle">
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" width="280" height="280">
+            <circle cx="100" cy="100" r="100" fill="#fff"/>
+            <path d="M100,0 L200,0 L200,88 L112,100 L200,112 L200,200 L100,200 L100,112 L88,100 L100,88 Z" fill="#CE1126"/>
+            <path d="M0,0 L100,0 L100,88 L88,100 L100,112 L100,200 L0,200 L0,112 L88,100 L0,88 Z" fill="#1EB53A"/>
+            <line x1="0" y1="100" x2="200" y2="100" stroke="white" stroke-width="22"/>
+            <line x1="100" y1="0" x2="100" y2="200" stroke="white" stroke-width="22"/>
+            <circle cx="100" cy="100" r="28" fill="white"/>
+            <text x="100" y="93" text-anchor="middle" font-size="16" fill="#CE1126">★</text>
+            <text x="88" y="113" text-anchor="middle" font-size="16" fill="#CE1126">★</text>
+            <text x="112" y="113" text-anchor="middle" font-size="16" fill="#CE1126">★</text>
+          </svg>
+        </div>
+      </div>
+      <div class="about-text">
+        <span class="section-tag">À propos</span>
+        <h2 class="section-title reveal">La voix numérique<br>du Burundi</h2>
+        <div class="divider"></div>
+        <p class="reveal">
+          BURUNDI INFORAMA est une plateforme d'agrégation d'actualités burundaises entièrement automatisée, diffusant du contenu <span class="highlight">24 heures sur 24, 7 jours sur 7</span> via Telegram.
+        </p>
+        <p class="reveal">
+          Notre système collecte les informations des meilleures sources burundaises — médias indépendants, radio, réseaux sociaux — et les distribue en temps réel à notre communauté au Burundi et dans la diaspora mondiale.
+        </p>
+        <p class="reveal">
+          En français et en kirundi, nous servons une audience engagée et informée, idéale pour les organisations internationales, les ONG et les marques souhaitant atteindre la communauté burundaise.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADVERTISE -->
+  <div class="advertise-section" id="advertise">
+    <div class="advertise-inner">
+      <span class="section-tag">Partenariats & Publicité</span>
+      <h2 class="section-title reveal">Touchez la communauté<br>burundaise mondiale</h2>
+      <p class="section-desc reveal">Notre audience combine Burundais locaux, diaspora en Europe et en Amérique du Nord, organisations humanitaires et acteurs du développement.</p>
+      <div class="divider reveal"></div>
+
+      <div class="audience-grid">
+        <div class="audience-card reveal">
+          <div class="audience-icon">🏛️</div>
+          <div class="audience-title">ONG & Organisations</div>
+          <div class="audience-desc">UNICEF, UNDP, IRC, Search for Common Ground et autres acteurs humanitaires actifs au Burundi.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">🌍</div>
+          <div class="audience-title">Diaspora</div>
+          <div class="audience-desc">Communauté burundaise en Belgique, France, Canada et USA — avec fort pouvoir d'achat.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">📱</div>
+          <div class="audience-title">Transferts d'argent</div>
+          <div class="audience-desc">Services comme WorldRemit, Western Union ciblant les envois vers le Burundi.</div>
+        </div>
+        <div class="audience-card reveal">
+          <div class="audience-icon">📻</div>
+          <div class="audience-title">Médias & Marques</div>
+          <div class="audience-desc">Radios locales, marques régionales et entreprises souhaitant visibilité au Burundi.</div>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:24px;" class="reveal">Formules de partenariat</h3>
+      <div class="packages-grid">
+        <div class="package-card reveal">
+          <div class="package-tag">Formule</div>
+          <div class="package-name">Mention Sponsorisée</div>
+          <ul class="package-features">
+            <li>Post Telegram mentionnant votre organisation</li>
+            <li>Logo + lien dans la description du canal</li>
+            <li>1 post sponsorisé par semaine</li>
+          </ul>
+        </div>
+        <div class="package-card featured reveal">
+          <div class="package-tag">★ Recommandé</div>
+          <div class="package-name">Partenaire Officiel</div>
+          <ul class="package-features">
+            <li>Badge "Partenaire Officiel" sur le canal</li>
+            <li>Posts sponsorisés illimités</li>
+            <li>Mention dans tous les formats de contenu</li>
+            <li>Rapport mensuel d'audience</li>
+          </ul>
+        </div>
+        <div class="package-card reveal">
+          <div class="package-tag">Formule</div>
+          <div class="package-name">Contenu Sur Mesure</div>
+          <ul class="package-features">
+            <li>Série de posts thématiques dédiés</li>
+            <li>Campagne de sensibilisation ciblée</li>
+            <li>Idéal pour ONG et campagnes sociales</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <span class="section-tag">Nous contacter</span>
+    <h2 class="section-title reveal">Démarrons une conversation</h2>
+    <p class="section-desc reveal" style="margin: 0 auto 40px;">Pour tout partenariat, publicité ou demande d'information, contactez-nous directement.</p>
+    <div class="contact-box reveal">
+      <div class="contact-links">
+        <a href="https://t.me/BurundiInforama" target="_blank" class="contact-link">
+          <span class="contact-link-icon tg-color">✈</span>
+          <div class="contact-link-text">
+            <div class="contact-link-label">Canal Telegram</div>
+            <div class="contact-link-value">@BurundiInforama</div>
+          </div>
+        </a>
+        <a href="mailto:burundi-inforama@proton.me" class="contact-link">
+          <span class="contact-link-icon">✉</span>
+          <div class="contact-link-text">
+            <div class="contact-link-label">Email</div>
+            <div class="contact-link-value">burundi-inforama@proton.me</div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">BURUNDI INFORAMA</div>
+    <div class="footer-tagline">L'Actualité en Temps Réel</div>
+    <ul class="footer-links">
+      <li><a href="#news">Actualités</a></li>
+      <li><a href="#formats">Contenus</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#advertise">Partenariats</a></li>
+      <li><a href="https://t.me/BurundiInforama" target="_blank">Telegram</a></li>
+    </ul>
+    <div class="footer-copy">© 2026 BURUNDI INFORAMA — Tous droits réservés</div>
+  </footer>
+
+  <script>
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 60);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Smooth nav highlight
+    const sections = document.querySelectorAll('section[id], div[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 100) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.style.color = a.getAttribute('href') === '#' + current ? 'var(--gold)' : '';
+      });
+    });
+  </script>
+
+  <script>
+    // Fetch live articles from Render API
+    const API_URL = 'https://burundi-inforama-1.onrender.com/api/articles';
+
+    function timeAgo(dateStr) {
+      const diff = Date.now() - new Date(dateStr).getTime();
+      const mins = Math.floor(diff / 60000);
+      const hours = Math.floor(diff / 3600000);
+      const days = Math.floor(diff / 86400000);
+      if (mins < 60) return `il y a ${mins}min`;
+      if (hours < 24) return `il y a ${hours}h`;
+      return `il y a ${days}j`;
+    }
+
+    async function loadNews() {
+      const grid = document.getElementById('newsGrid');
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        const articles = data.articles || [];
+
+        if (articles.length === 0) {
+          grid.innerHTML = '<div class="news-empty">🇧🇮 Aucun article disponible pour le moment.<br>Revenez bientôt!</div>';
+          return;
+        }
+
+        grid.innerHTML = articles.map(a => `
+          <div class="news-card reveal">
+            <div class="news-card-header">
+              <span class="news-card-badge">${a.format_emoji || '📰'} ${a.format_label || 'ACTUALITÉ'}</span>
+              <span class="news-card-date">${timeAgo(a.posted_at)}</span>
+            </div>
+            <div class="news-card-title">${a.titre || ''}</div>
+            ${a.resume ? `<div class="news-card-resume">${a.resume}</div>` : ''}
+            <div class="news-card-footer">
+              <span class="news-card-source">${a.source || ''}</span>
+              ${a.url && a.url.startsWith('http') ? `<a href="${a.url}" target="_blank" class="news-card-link">Lire →</a>` : ''}
+            </div>
+          </div>
+        `).join('');
+
+        // Re-trigger reveal animations
+        document.querySelectorAll('.news-card').forEach(el => {
+          observer.observe(el);
+        });
+
+        document.getElementById('newsRefreshTime').textContent =
+          'Dernière mise à jour: ' + new Date().toLocaleTimeString('fr-FR');
+
+      } catch (e) {
+        grid.innerHTML = '<div class="news-empty">🇧🇮 Actualités bientôt disponibles.<br>Le serveur se réveille...</div>';
+      }
+    }
+
+    // Load on page open and refresh every 5 minutes
+    loadNews();
+    setInterval(loadNews, 5 * 60 * 1000);
+  </script>
+
+
+</body>
+</html>
