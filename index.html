@@ -646,118 +646,6 @@
 
     /* Telegram blue */
     .tg-color { color: #2aabee; }
-
-    /* ── NEWS FEED ── */
-    #news { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
-
-    .news-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 2px;
-      margin-top: 32px;
-    }
-
-    .news-card {
-      background: var(--dark3);
-      border: 1px solid var(--border);
-      padding: 24px;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .news-card:hover {
-      background: #1a1f19;
-      border-color: rgba(245,196,0,0.3);
-    }
-
-    .news-card-header {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .news-card-badge {
-      font-size: 0.62rem;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--gold);
-      background: rgba(245,196,0,0.08);
-      border: 1px solid rgba(245,196,0,0.2);
-      padding: 3px 8px;
-      border-radius: 2px;
-    }
-
-    .news-card-date {
-      font-size: 0.65rem;
-      color: var(--muted);
-      margin-left: auto;
-    }
-
-    .news-card-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1rem;
-      font-weight: 700;
-      line-height: 1.35;
-      color: var(--text);
-    }
-
-    .news-card-resume {
-      font-size: 0.82rem;
-      color: var(--muted);
-      line-height: 1.65;
-      flex: 1;
-    }
-
-    .news-card-footer {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-top: 4px;
-    }
-
-    .news-card-source {
-      font-size: 0.68rem;
-      color: var(--muted);
-      font-style: italic;
-    }
-
-    .news-card-link {
-      font-size: 0.72rem;
-      color: var(--green);
-      text-decoration: none;
-      letter-spacing: 0.05em;
-      transition: color 0.2s;
-    }
-
-    .news-card-link:hover { color: var(--gold); }
-
-    .news-loading {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      padding: 40px;
-      grid-column: 1/-1;
-    }
-
-    .news-empty {
-      text-align: center;
-      color: var(--muted);
-      font-size: 0.85rem;
-      padding: 40px;
-      grid-column: 1/-1;
-      border: 1px dashed var(--border);
-    }
-
-    .news-refresh {
-      font-size: 0.7rem;
-      color: var(--muted);
-      margin-top: 16px;
-      text-align: right;
-    }
   </style>
 </head>
 <body>
@@ -785,7 +673,6 @@
       <span class="nav-name">BURUNDI INFORAMA</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#news">Actualités</a></li>
       <li><a href="#formats">Contenus</a></li>
       <li><a href="#about">À propos</a></li>
       <li><a href="#advertise">Partenariat</a></li>
@@ -835,30 +722,22 @@
     </div>
   </div>
 
-
-  <!-- NEWS FEED -->
-  <section id="news">
-    <span class="section-tag">Dernières publications</span>
-    <h2 class="section-title reveal">Actualités en direct</h2>
-    <p class="section-desc reveal">Les derniers articles publiés automatiquement sur notre canal Telegram — mis à jour toutes les heures.</p>
-    <div class="divider reveal"></div>
-    <div class="news-grid" id="newsGrid">
-      <div class="news-loading">⏳ Chargement des actualités...</div>
-    </div>
-    <p class="news-refresh" id="newsRefreshTime"></p>
-  </section>
-
   <!-- FORMATS -->
   <section id="formats">
     <span class="section-tag">Ce que nous couvrons</span>
     <h2 class="section-title reveal">Un contenu varié,<br>toujours pertinent</h2>
     <p class="section-desc reveal">Chaque heure, notre système publie automatiquement du contenu frais issu des meilleures sources burundaises.</p>
     <div class="divider reveal"></div>
-        <div class="formats-grid">
+    <div class="formats-grid">
       <div class="format-card reveal">
         <span class="format-emoji">📰</span>
         <div class="format-name">Actualité</div>
         <div class="format-desc">Les dernières nouvelles politiques et sociales du Burundi, en temps réel.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">⚽</span>
+        <div class="format-name">Sport</div>
+        <div class="format-desc">Vital'O FC, Hawks FC, équipe nationale Intamba mu rugamba, et athlétisme.</div>
       </div>
       <div class="format-card reveal">
         <span class="format-emoji">💰</span>
@@ -866,17 +745,26 @@
         <div class="format-desc">Café burundais, taux de change BRB, commerce EAC, investissements.</div>
       </div>
       <div class="format-card reveal">
-        <span class="format-emoji">🏛️</span>
-        <div class="format-name">Politique</div>
-        <div class="format-desc">Gouvernement, opposition, élections, diplomatie et droits de l'homme au Burundi.</div>
-      </div>
-      <div class="format-card reveal">
         <span class="format-emoji">🎭</span>
         <div class="format-name">Culture & Société</div>
         <div class="format-desc">Musique, danse des tambours, art, traditions et personnalités culturelles.</div>
       </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">📖</span>
+        <div class="format-name">Le Saviez-Vous?</div>
+        <div class="format-desc">Faits historiques fascinants et méconnus sur le Burundi et son histoire.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">🌿</span>
+        <div class="format-name">Proverbe Kirundi</div>
+        <div class="format-desc">Sagesse traditionnelle burundaise — proverbes en kirundi avec traduction.</div>
+      </div>
+      <div class="format-card reveal">
+        <span class="format-emoji">🌍</span>
+        <div class="format-name">Diaspora</div>
+        <div class="format-desc">Nouvelles pour la communauté burundaise en Belgique, France, Canada et USA.</div>
+      </div>
     </div>
-
   </section>
 
   <!-- ABOUT -->
@@ -993,11 +881,11 @@
             <div class="contact-link-value">@BurundiInforama</div>
           </div>
         </a>
-        <a href="mailto:burundi-inforama@proton.me" class="contact-link">
+        <a href="mailto:contact@burundi-inforama.com" class="contact-link">
           <span class="contact-link-icon">✉</span>
           <div class="contact-link-text">
             <div class="contact-link-label">Email</div>
-            <div class="contact-link-value">burundi-inforama@proton.me</div>
+            <div class="contact-link-value">contact@burundi-inforama.com</div>
           </div>
         </a>
       </div>
@@ -1009,7 +897,6 @@
     <div class="footer-logo">BURUNDI INFORAMA</div>
     <div class="footer-tagline">L'Actualité en Temps Réel</div>
     <ul class="footer-links">
-      <li><a href="#news">Actualités</a></li>
       <li><a href="#formats">Contenus</a></li>
       <li><a href="#about">À propos</a></li>
       <li><a href="#advertise">Partenariats</a></li>
@@ -1043,65 +930,5 @@
       });
     });
   </script>
-
-  <script>
-    // Fetch live articles from Render API
-    const API_URL = 'https://burundi-inforama-1.onrender.com/api/articles';
-
-    function timeAgo(dateStr) {
-      const diff = Date.now() - new Date(dateStr).getTime();
-      const mins = Math.floor(diff / 60000);
-      const hours = Math.floor(diff / 3600000);
-      const days = Math.floor(diff / 86400000);
-      if (mins < 60) return `il y a ${mins}min`;
-      if (hours < 24) return `il y a ${hours}h`;
-      return `il y a ${days}j`;
-    }
-
-    async function loadNews() {
-      const grid = document.getElementById('newsGrid');
-      try {
-        const res = await fetch(API_URL);
-        const data = await res.json();
-        const articles = data.articles || [];
-
-        if (articles.length === 0) {
-          grid.innerHTML = '<div class="news-empty">🇧🇮 Aucun article disponible pour le moment.<br>Revenez bientôt!</div>';
-          return;
-        }
-
-        grid.innerHTML = articles.map(a => `
-          <div class="news-card reveal">
-            <div class="news-card-header">
-              <span class="news-card-badge">${a.format_emoji || '📰'} ${a.format_label || 'ACTUALITÉ'}</span>
-              <span class="news-card-date">${timeAgo(a.posted_at)}</span>
-            </div>
-            <div class="news-card-title">${a.titre || ''}</div>
-            ${a.resume ? `<div class="news-card-resume">${a.resume}</div>` : ''}
-            <div class="news-card-footer">
-              <span class="news-card-source">${a.source || ''}</span>
-              ${a.url && a.url.startsWith('http') ? `<a href="${a.url}" target="_blank" class="news-card-link">Lire →</a>` : ''}
-            </div>
-          </div>
-        `).join('');
-
-        // Re-trigger reveal animations
-        document.querySelectorAll('.news-card').forEach(el => {
-          observer.observe(el);
-        });
-
-        document.getElementById('newsRefreshTime').textContent =
-          'Dernière mise à jour: ' + new Date().toLocaleTimeString('fr-FR');
-
-      } catch (e) {
-        grid.innerHTML = '<div class="news-empty">🇧🇮 Actualités bientôt disponibles.<br>Le serveur se réveille...</div>';
-      }
-    }
-
-    // Load on page open and refresh every 5 minutes
-    loadNews();
-    setInterval(loadNews, 5 * 60 * 1000);
-  </script>
-
 </body>
 </html>
