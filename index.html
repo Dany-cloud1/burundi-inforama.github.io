@@ -213,11 +213,640 @@
     .hero-actions {
       display: flex;
       gap: 16px;
-< truncated lines 216-719 >
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadein 0.8s 0.4s ease both;
+    }
+
+    .btn-primary {
+      background: var(--green);
+      color: white;
+      padding: 14px 32px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .btn-primary:hover {
+      background: #009a4e;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,122,61,0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 14px 32px;
+      border-radius: 2px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 0.05em;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.2s;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--dark3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 32px 40px;
+      display: flex;
+      justify-content: center;
+      gap: 64px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      text-align: center;
+    }
+
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--gold);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* ── SECTIONS ── */
+    section {
+      padding: 80px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .section-tag {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 48px;
+    }
+
+    /* ── FORMATS GRID ── */
+    .formats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 2px;
+    }
+
+    .format-card {
+      background: var(--dark3);
+      padding: 28px;
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .format-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px;
+      height: 0;
+      background: var(--gold);
+      transition: height 0.3s;
+    }
+
+    .format-card:hover::before { height: 100%; }
+    .format-card:hover { background: #1a1f19; }
+
+    .format-emoji {
+      font-size: 1.8rem;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .format-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .format-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── ABOUT ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-visual {
+      position: relative;
+    }
+
+    .flag-circle {
+      width: 280px;
+      height: 280px;
+      border-radius: 50%;
+      overflow: hidden;
+      border: 3px solid var(--border);
+      margin: 0 auto;
+      box-shadow: 0 0 60px rgba(0,122,61,0.2);
+    }
+
+    .about-text p {
+      color: var(--muted);
+      line-height: 1.9;
+      margin-bottom: 20px;
+      font-size: 0.95rem;
+    }
+
+    .highlight {
+      color: var(--gold);
+      font-style: italic;
+    }
+
+    /* ── ADVERTISE ── */
+    .advertise-section {
+      background: var(--dark3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 80px 24px;
+    }
+
+    .advertise-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .audience-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .audience-card {
+      background: var(--dark);
+      border: 1px solid var(--border);
+      padding: 24px;
+      border-radius: 2px;
+    }
+
+    .audience-icon {
+      font-size: 1.5rem;
+      margin-bottom: 10px;
+    }
+
+    .audience-title {
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .audience-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .package-card {
+      border: 1px solid var(--border);
+      padding: 32px;
+      position: relative;
+    }
+
+    .package-card.featured {
+      border-color: var(--gold);
+      background: rgba(245,196,0,0.03);
+    }
+
+    .package-tag {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .package-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .package-features {
+      list-style: none;
+      margin-bottom: 24px;
+    }
+
+    .package-features li {
+      font-size: 0.85rem;
+      color: var(--muted);
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .package-features li::before {
+      content: '✓';
+      color: var(--green);
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    /* ── CONTACT ── */
+    #contact {
+      text-align: center;
+    }
+
+    .contact-box {
+      max-width: 560px;
+      margin: 0 auto;
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      padding: 48px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin-top: 32px;
+    }
+
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: var(--dark);
+      border: 1px solid var(--border);
+      text-decoration: none;
+      color: var(--text);
+      transition: all 0.2s;
+    }
+
+    .contact-link:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .contact-link-icon {
+      font-size: 1.3rem;
+      width: 32px;
+      text-align: center;
+    }
+
+    .contact-link-text {
+      text-align: left;
+    }
+
+    .contact-link-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .contact-link-value {
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark2);
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .footer-tagline {
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      list-style: none;
+      margin-bottom: 32px;
+    }
+
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.72rem;
+      color: #3a4a3a;
+    }
+
+    /* ── DIVIDER ── */
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      margin: 20px 0 36px;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .nav-links { display: none; }
+      .stats-bar { gap: 32px; padding: 28px 20px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-visual { display: none; }
+      .contact-box { padding: 32px 24px; }
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Telegram blue */
+    .tg-color { color: #2aabee; }
+
+    /* ── NEWS FEED ── */
+    #news { padding: 80px 24px; max-width: 1100px; margin: 0 auto; }
+
+    .news-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2px;
+      margin-top: 32px;
+    }
+
+    .news-card {
+      background: var(--dark3);
+      border: 1px solid var(--border);
+      padding: 24px;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .news-card:hover {
+      background: #1a1f19;
+      border-color: rgba(245,196,0,0.3);
+    }
+
+    .news-card-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .news-card-badge {
+      font-size: 0.62rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: rgba(245,196,0,0.08);
+      border: 1px solid rgba(245,196,0,0.2);
+      padding: 3px 8px;
+      border-radius: 2px;
+    }
+
+    .news-card-date {
+      font-size: 0.65rem;
+      color: var(--muted);
+      margin-left: auto;
+    }
+
+    .news-card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+    }
+
+    .news-card-resume {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .news-card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+    }
+
+    .news-card-source {
+      font-size: 0.68rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    .news-card-link {
+      font-size: 0.72rem;
+      color: var(--green);
+      text-decoration: none;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+
+    .news-card-link:hover { color: var(--gold); }
+
+    .news-loading {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 40px;
+      grid-column: 1/-1;
+    }
+
+    .news-empty {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      padding: 40px;
+      grid-column: 1/-1;
+      border: 1px dashed var(--border);
+    }
+
+    .news-refresh {
+      font-size: 0.7rem;
+      color: var(--muted);
+      margin-top: 16px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">
+      <!-- Burundi flag circle -->
+      <svg class="nav-flag" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="50" cy="50" r="50" fill="#fff"/>
+        <!-- White diagonal cross -->
+        <line x1="0" y1="50" x2="100" y2="50" stroke="white" stroke-width="12"/>
+        <line x1="50" y1="0" x2="50" y2="100" stroke="white" stroke-width="12"/>
+        <!-- Red top & bottom -->
+        <path d="M50,0 L100,0 L100,44 L56,50 L100,56 L100,100 L50,100 L50,56 L44,50 L50,44 Z" fill="#CE1126"/>
+        <!-- Green left & right -->
+        <path d="M0,0 L50,0 L50,44 L44,50 L50,56 L50,100 L0,100 L0,56 L44,50 L0,44 Z" fill="#1EB53A"/>
+        <!-- White circle center -->
+        <circle cx="50" cy="50" r="14" fill="white"/>
+        <!-- 3 red stars -->
+        <text x="50" y="47" text-anchor="middle" font-size="8" fill="#CE1126">★</text>
+        <text x="44" y="56" text-anchor="middle" font-size="8" fill="#CE1126">★</text>
+        <text x="56" y="56" text-anchor="middle" font-size="8" fill="#CE1126">★</text>
+      </svg>
+      <span class="nav-name">BURUNDI INFORAMA</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#news">Actualités</a></li>
+      <li><a href="#formats">Contenus</a></li>
+      <li><a href="#about">À propos</a></li>
+      <li><a href="#advertise">Partenariat</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="live-badge">
+      <span class="live-dot"></span>
+      Diffusion 24h/24 — 7j/7
+    </div>
+    <h1 class="hero-title">
+      <span>BURUNDI</span>
+      <span style="-webkit-text-fill-color: var(--text); background: none;">INFORAMA</span>
+    </h1>
+    <p class="hero-subtitle-line">L'Actualité en Temps Réel</p>
+    <p class="hero-desc">
+      Le premier agrégateur d'actualités burundaises automatisé — politique, économie, sport, culture et diaspora, en français et en kirundi.
+    </p>
+    <div class="hero-actions">
+      <a href="https://t.me/BurundiInforama" target="_blank" class="btn-primary">
+        <span class="tg-color">✈</span> Rejoindre sur Telegram
+      </a>
+      <a href="#advertise" class="btn-secondary">Devenir partenaire</a>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar">
+    <div class="stat reveal">
+      <span class="stat-num">24/7</span>
+      <span class="stat-label">Publication automatique</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-num">7</span>
+      <span class="stat-label">Formats de contenu</span>
+    </div>
+    <div class="stat reveal">
+      <span class="stat-num">2</span>
+      <span class="stat-label">Langues — FR & Kirundi</span>
+    </div>
+    <div class="stat reveal">
       <span class="stat-num">🇧🇮</span>
       <span class="stat-label">100% Burundi</span>
     </div>
   </div>
+
+
+  <!-- NEWS FEED -->
+  <section id="news">
+    <span class="section-tag">Dernières publications</span>
+    <h2 class="section-title reveal">Actualités en direct</h2>
+    <p class="section-desc reveal">Les derniers articles publiés automatiquement sur notre canal Telegram — mis à jour toutes les heures.</p>
+    <div class="divider reveal"></div>
+    <div class="news-grid" id="newsGrid">
+      <div class="news-loading">⏳ Chargement des actualités...</div>
+    </div>
+    <p class="news-refresh" id="newsRefreshTime"></p>
+  </section>
 
   <!-- FORMATS -->
   <section id="formats">
@@ -225,16 +854,11 @@
     <h2 class="section-title reveal">Un contenu varié,<br>toujours pertinent</h2>
     <p class="section-desc reveal">Chaque heure, notre système publie automatiquement du contenu frais issu des meilleures sources burundaises.</p>
     <div class="divider reveal"></div>
-    <div class="formats-grid">
+        <div class="formats-grid">
       <div class="format-card reveal">
         <span class="format-emoji">📰</span>
         <div class="format-name">Actualité</div>
         <div class="format-desc">Les dernières nouvelles politiques et sociales du Burundi, en temps réel.</div>
-      </div>
-      <div class="format-card reveal">
-        <span class="format-emoji">⚽</span>
-        <div class="format-name">Sport</div>
-        <div class="format-desc">Vital'O FC, Hawks FC, équipe nationale Intamba mu rugamba, et athlétisme.</div>
       </div>
       <div class="format-card reveal">
         <span class="format-emoji">💰</span>
@@ -242,26 +866,17 @@
         <div class="format-desc">Café burundais, taux de change BRB, commerce EAC, investissements.</div>
       </div>
       <div class="format-card reveal">
+        <span class="format-emoji">🏛️</span>
+        <div class="format-name">Politique</div>
+        <div class="format-desc">Gouvernement, opposition, élections, diplomatie et droits de l'homme au Burundi.</div>
+      </div>
+      <div class="format-card reveal">
         <span class="format-emoji">🎭</span>
         <div class="format-name">Culture & Société</div>
         <div class="format-desc">Musique, danse des tambours, art, traditions et personnalités culturelles.</div>
       </div>
-      <div class="format-card reveal">
-        <span class="format-emoji">📖</span>
-        <div class="format-name">Le Saviez-Vous?</div>
-        <div class="format-desc">Faits historiques fascinants et méconnus sur le Burundi et son histoire.</div>
-      </div>
-      <div class="format-card reveal">
-        <span class="format-emoji">🌿</span>
-        <div class="format-name">Proverbe Kirundi</div>
-        <div class="format-desc">Sagesse traditionnelle burundaise — proverbes en kirundi avec traduction.</div>
-      </div>
-      <div class="format-card reveal">
-        <span class="format-emoji">🌍</span>
-        <div class="format-name">Diaspora</div>
-        <div class="format-desc">Nouvelles pour la communauté burundaise en Belgique, France, Canada et USA.</div>
-      </div>
     </div>
+
   </section>
 
   <!-- ABOUT -->
@@ -394,6 +1009,7 @@
     <div class="footer-logo">BURUNDI INFORAMA</div>
     <div class="footer-tagline">L'Actualité en Temps Réel</div>
     <ul class="footer-links">
+      <li><a href="#news">Actualités</a></li>
       <li><a href="#formats">Contenus</a></li>
       <li><a href="#about">À propos</a></li>
       <li><a href="#advertise">Partenariats</a></li>
@@ -427,5 +1043,65 @@
       });
     });
   </script>
+
+  <script>
+    // Fetch live articles from Render API
+    const API_URL = 'https://burundi-inforama-1.onrender.com/api/articles';
+
+    function timeAgo(dateStr) {
+      const diff = Date.now() - new Date(dateStr).getTime();
+      const mins = Math.floor(diff / 60000);
+      const hours = Math.floor(diff / 3600000);
+      const days = Math.floor(diff / 86400000);
+      if (mins < 60) return `il y a ${mins}min`;
+      if (hours < 24) return `il y a ${hours}h`;
+      return `il y a ${days}j`;
+    }
+
+    async function loadNews() {
+      const grid = document.getElementById('newsGrid');
+      try {
+        const res = await fetch(API_URL);
+        const data = await res.json();
+        const articles = data.articles || [];
+
+        if (articles.length === 0) {
+          grid.innerHTML = '<div class="news-empty">🇧🇮 Aucun article disponible pour le moment.<br>Revenez bientôt!</div>';
+          return;
+        }
+
+        grid.innerHTML = articles.map(a => `
+          <div class="news-card reveal">
+            <div class="news-card-header">
+              <span class="news-card-badge">${a.format_emoji || '📰'} ${a.format_label || 'ACTUALITÉ'}</span>
+              <span class="news-card-date">${timeAgo(a.posted_at)}</span>
+            </div>
+            <div class="news-card-title">${a.titre || ''}</div>
+            ${a.resume ? `<div class="news-card-resume">${a.resume}</div>` : ''}
+            <div class="news-card-footer">
+              <span class="news-card-source">${a.source || ''}</span>
+              ${a.url && a.url.startsWith('http') ? `<a href="${a.url}" target="_blank" class="news-card-link">Lire →</a>` : ''}
+            </div>
+          </div>
+        `).join('');
+
+        // Re-trigger reveal animations
+        document.querySelectorAll('.news-card').forEach(el => {
+          observer.observe(el);
+        });
+
+        document.getElementById('newsRefreshTime').textContent =
+          'Dernière mise à jour: ' + new Date().toLocaleTimeString('fr-FR');
+
+      } catch (e) {
+        grid.innerHTML = '<div class="news-empty">🇧🇮 Actualités bientôt disponibles.<br>Le serveur se réveille...</div>';
+      }
+    }
+
+    // Load on page open and refresh every 5 minutes
+    loadNews();
+    setInterval(loadNews, 5 * 60 * 1000);
+  </script>
+
 </body>
 </html>
